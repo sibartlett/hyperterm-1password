@@ -3,7 +3,7 @@
 Extension for [HyperTerm](https://hyperterm.org/) that adds [1Password](https://1password.com) integration.
 
 <center>
-![](http://i.imgur.com/ERv1A4M.gif)
+![1Password and HyperTerm in action](http://i.imgur.com/ERv1A4M.gif)
 </center>
 
 ### How to use
