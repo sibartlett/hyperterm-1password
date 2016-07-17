@@ -2,7 +2,22 @@ const onepass = require("onepass")({
   bundleId: "com.sudolikeaboss.sudolikeaboss"
 });
 
-exports.decorateTerm = Term => {
+const isTerm = Term => {
+  const keys = Object.getOwnPropertyNames(Term.prototype);
+  return [
+    "clear",
+    "focus",
+    "getTermDocument",
+    "write"
+  ].every(key => keys.indexOf(key) > -1);
+};
+
+exports.decorateTerm = (Term, { notify }) => {
+  if (!isTerm(Term)) {
+    notify("hyperterm-1password", "Must be 1st plugin listed in ~/.hyperterm.js");
+    return Term;
+  }
+
   return class extends Term {
 
     componentDidMount () {
