@@ -1,0 +1,18 @@
+{
+  "name": "hyperterm-1password",
+  "version": "1.0.0",
+  "description": "1Password extension for HyperTerm",
+  "author": "Simon Bartlett <simon@sibartlett.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/sibartlett/hyperterm-1password",
+  "repository": "git://github.com/sibartlett/hyperterm-1password",
+  "main": "index.js",
+  "keywords": [
+    "hyperterm",
+    "1password",
+    "sudolikeaboss"
+  ],
+  "dependencies": {
+    "onepass": "^1.0.0"
+  }
+}
