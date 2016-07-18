@@ -15,6 +15,8 @@ exports.decorateTerm = (Term, { React }) => {
           return handler;
         }
 
+        const fn = handler[1];
+
         return [
           "keydown",
           function(e) {
@@ -23,7 +25,7 @@ exports.decorateTerm = (Term, { React }) => {
                      .then(pass => this.terminal.io.sendString(pass))
                      .catch(() => {});
             }
-            return this.onKeyDown_(e);
+            return fn(e);
           }.bind(term.keyboard)
         ];
       });
