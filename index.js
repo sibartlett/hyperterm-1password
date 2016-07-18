@@ -2,30 +2,15 @@ const onepass = require("onepass")({
   bundleId: "com.sudolikeaboss.sudolikeaboss"
 });
 
-const isTerm = Term => {
-  const keys = Object.getOwnPropertyNames(Term.prototype);
-  return [
-    "clear",
-    "focus",
-    "getTermDocument",
-    "write"
-  ].every(key => keys.indexOf(key) > -1);
-};
+exports.decorateTerm = (Term, { React }) => {
+  return class extends React.Component {
 
-exports.decorateTerm = (Term, { notify }) => {
-  if (!isTerm(Term)) {
-    notify("hyperterm-1password", "Must be 1st plugin listed in ~/.hyperterm.js");
-    return Term;
-  }
+    _onTerminal (term) {
+      if (this.props && this.props.onTerminal) this.props.onTerminal(term);
 
-  return class extends Term {
+      term.uninstallKeyboard();
 
-    componentDidMount () {
-      super.componentDidMount();
-
-      this.term.uninstallKeyboard();
-
-      this.term.keyboard.handlers_ = this.term.keyboard.handlers_.map(handler => {
+      term.keyboard.handlers_ = term.keyboard.handlers_.map(handler => {
         if (handler[0] !== "keydown") {
           return handler;
         }
@@ -39,11 +24,18 @@ exports.decorateTerm = (Term, { notify }) => {
                      .catch(() => {});
             }
             return this.onKeyDown_(e);
-          }.bind(this.term.keyboard)
+          }.bind(term.keyboard)
         ];
       });
 
-      this.term.installKeyboard();
+      term.installKeyboard();
     }
+
+    render () {
+      return React.createElement(Term, Object.assign({}, this.props, {
+        onTerminal: this._onTerminal
+      }));
+    }
+
   };
 };
