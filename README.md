@@ -2,9 +2,7 @@
 
 Extension for [HyperTerm](https://hyperterm.org/) that adds [1Password](https://1password.com) integration.
 
-<center>
 ![1Password and HyperTerm in action](http://i.imgur.com/ERv1A4M.gif)
-</center>
 
 ### How to use
 
@@ -12,7 +10,7 @@ Extension for [HyperTerm](https://hyperterm.org/) that adds [1Password](https://
 2. Add `hyperterm-1password` to plugins in `~/.hyperterm.js`.
 3. Use `Cmd + \` to open the 1Password modal.
 
-### Configuring 1Password5 to work with HyperTerm
+### Configuring 1Password to work with HyperTerm
 
 If you're using 1Password 5+, or you run into this screen:
 
