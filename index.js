@@ -5,6 +5,11 @@ const onepass = require("onepass")({
 exports.decorateTerm = (Term, { React }) => {
   return class extends React.Component {
 
+    constructor (props, context) {
+      super(props, context);
+      this._onTerminal = this._onTerminal.bind(this);
+    }
+
     _onTerminal (term) {
       if (this.props && this.props.onTerminal) this.props.onTerminal(term);
 
