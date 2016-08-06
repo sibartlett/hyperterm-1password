@@ -13,28 +13,20 @@ exports.decorateTerm = (Term, { React }) => {
     _onTerminal (term) {
       if (this.props && this.props.onTerminal) this.props.onTerminal(term);
 
+      const handler = [
+        "keydown",
+        function(e) {
+          if (e.metaKey && e.keyCode === 220) {
+            e.preventDefault();
+            onepass.password("sudolikeaboss://local")
+                   .then(pass => this.terminal.io.sendString(pass))
+                   .catch(() => {});
+          }
+        }.bind(term.keyboard)
+      ];
+
       term.uninstallKeyboard();
-
-      term.keyboard.handlers_ = term.keyboard.handlers_.map(handler => {
-        if (handler[0] !== "keydown") {
-          return handler;
-        }
-
-        const fn = handler[1];
-
-        return [
-          "keydown",
-          function(e) {
-            if (e.metaKey && e.keyCode === 220) {
-              onepass.password("sudolikeaboss://local")
-                     .then(pass => this.terminal.io.sendString(pass))
-                     .catch(() => {});
-            }
-            return fn(e);
-          }.bind(term.keyboard)
-        ];
-      });
-
+      term.keyboard.handlers_ = [handler].concat(term.keyboard.handlers_);
       term.installKeyboard();
     }
 
