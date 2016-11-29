@@ -13,6 +13,6 @@
     "sudolikeaboss"
   ],
   "dependencies": {
-    "onepass": "^1.0.0"
+    "onepass": "^2.0.0"
   }
 }

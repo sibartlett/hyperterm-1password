@@ -1,8 +1,22 @@
-const onepass = require("onepass")({
-  bundleId: "com.sudolikeaboss.sudolikeaboss"
-});
+const onepass = require("onepass")();
 
-exports.decorateTerm = (Term, { React }) => {
+const CRED_KEY = "1Password.credentials";
+
+exports.decorateTerm = (Term, { React, notify }) => {
+
+  let credentials = JSON.parse(window.localStorage.getItem(CRED_KEY));
+
+  if (!credentials) {
+    credentials = onepass.auth.generateCredentials();
+    window.localStorage.setItem(CRED_KEY, JSON.stringify(credentials));
+  }
+
+  onepass.auth.credentials(credentials);
+
+  onepass.on("authCode", code => {
+    notify(`1Password auth code: ${code}`);
+  });
+
   return class extends React.Component {
 
     constructor (props, context) {
