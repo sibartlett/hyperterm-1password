@@ -1,6 +1,6 @@
 {
   "name": "hyperterm-1password",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "1Password extension for HyperTerm",
   "author": "Simon Bartlett <simon@sibartlett.com>",
   "license": "MIT",
