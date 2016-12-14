@@ -7,7 +7,7 @@ Extension for [HyperTerm](https://hyperterm.org/) that adds [1Password](https://
 ### How to use
 
 1. Install HyperTerm
-2. Add `hyperterm-1password` to plugins in `~/.hyperterm.js`.
+2. Add `hyperterm-1password` to plugins in `~/.hyper.js`.
 3. Use `Cmd + \` to open the 1Password modal.
 
 ### Configuring 1Password to work with HyperTerm
