@@ -1,5 +1,7 @@
 # 1Password for HyperTerm
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sibartlett/hyperterm-1password.svg)](https://greenkeeper.io/)
+
 Extension for [HyperTerm](https://hyperterm.org/) that adds [1Password](https://1password.com) integration.
 
 ![1Password and HyperTerm in action](http://i.imgur.com/ERv1A4M.gif)
